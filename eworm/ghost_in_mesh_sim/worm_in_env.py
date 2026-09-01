@@ -163,19 +163,23 @@ class WormInEnv(object):
         self.test_local_head_loc.append(interact.get_head_location(0))
         self.test_world_head_loc.append(interact.worm_local_to_world(0, interact.get_head_location(0)))
 
-        # calculate motor neuron voltage
+        # calculate motor neuron voltage (60 integration sub-steps for numerical stability)
         for _ in range(dt_scale):
             mnv = self.simulate_neural_model_one_time_step(delta_concentration_normalized_list)
             for i in range(self.worm_num):
                 self.__setattr__(f"mnv_{i:d}", eval(f"self.mnv_{i:d}") + mnv[i])
-                self.__setattr__(f"nv_{i:d}", eval(f"self.nv_{i:d}") + eval(f"self.worm_{i:d}.get_neuron_voltage()"))
+        # neuron voltages are display-only (coloring); read once at end of the
+        # motion window instead of averaging over all 60 sub-steps (was ~73% of
+        # the control-step time).
+        for i in range(self.worm_num):
+            self.__setattr__(f"nv_{i:d}", eval(f"self.worm_{i:d}.get_neuron_voltage()"))
         # calculate muscle signal
         muscle_signal_list = []
         for i in range(self.worm_num):
             self.__setattr__(f"mnv_{i:d}", eval(f"self.mnv_{i:d}") / dt_scale)
             _m = eval(f"self.worm_{i:d}.motor_neuron_volt_to_muscle_sig(self.mnv_{i:d})")
             muscle_signal_list.append(_m)
-            self.__setattr__(f"nv_{i:d}", eval(f"self.nv_{i:d}") / dt_scale)
+            # nv_ is already the end-of-window voltage (read once, not summed)
         # with open("forfigure_motor_neuron.txt", "a") as file:
         #     for n in self.mnv_0:
         #         file.write(f"{n:.6f},")
