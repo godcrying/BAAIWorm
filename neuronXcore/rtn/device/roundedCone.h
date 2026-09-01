@@ -44,9 +44,9 @@ namespace rtn {
 			vec3f uIntToVec3f(int32_t irgba)
 		{
 			vec3f rgb;
-			rgb.z = uint_as_float(irgba >> 16 & 0xFF) / 255;
-			rgb.y = uint_as_float(irgba >> 8 & 0xFF) / 255;
-			rgb.x = uint_as_float(irgba & 0xFF) / 255;
+			rgb.z = float(irgba >> 16 & 0xFF) / 255;
+			rgb.y = float(irgba >> 8 & 0xFF) / 255;
+			rgb.x = float(irgba & 0xFF) / 255;
 			return rgb;
 		}
 

@@ -2,13 +2,14 @@ cmake_minimum_required(VERSION 2.8.6)
 project(interact)
 
 add_compile_options(-fPIC)
-add_compile_options(-std=gnu++11)
+add_compile_options(-std=gnu++14)
 add_compile_options(-Wdeprecated-declarations)
 
 set(BOOST_ROOT "/usr/local")
 find_package(Boost #[[1.66.0]] COMPONENTS python3 numpy3 filesystem)
 find_package(PythonLibs REQUIRED)
 find_package(Eigen3 REQUIRED)
+get_target_property(EIGEN3_INCLUDE_DIR Eigen3::Eigen INTERFACE_INCLUDE_DIRECTORIES)
 
 link_directories(../sim/)
 include_directories(../sim/)

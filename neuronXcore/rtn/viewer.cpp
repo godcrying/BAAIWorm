@@ -1393,13 +1393,13 @@ namespace rtn
 
 		glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-      	//glDisable(GL_LIGHTING);
+      	glDisable(GL_LIGHTING);
       	glColor3f(1.f, 1.f, 1.f);
 
       	glMatrixMode(GL_MODELVIEW);
       	glLoadIdentity();
       
-      	//glDisable(GL_DEPTH_TEST);
+      	glDisable(GL_DEPTH_TEST);
 		//glEnable(GL_DEPTH_TEST);
 
       	glViewport(0, 0, fbSize.x, fbSize.y);

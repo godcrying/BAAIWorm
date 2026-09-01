@@ -201,7 +201,7 @@ def train_neuron_muscle_map(config):
     pad = nn.ReflectionPad2d(padding=(10, 10, 0, 0))
     b_x = torch.squeeze(pad(b_x), dim=0)
     b_y = torch.tensor(torch.from_numpy(muscle_signal)).to(torch.float32)
-    loss_arr = np.zeros([EPOCH,], dtype=np.float)
+    loss_arr = np.zeros([EPOCH,], dtype=float)
     for epoch in range(EPOCH):
         output = cnn(b_x)
         loss = loss_func(output, b_y)
@@ -301,7 +301,7 @@ def train_neuron_muscle_detail_map(config):
         pad = nn.ReflectionPad2d(padding=(10, 10, 0, 0))
         b_x = torch.squeeze(pad(b_x), dim=0)
         b_y = torch.tensor(torch.from_numpy(np.expand_dims(muscle_signal[m_i], axis=0))).to(torch.float32)
-        loss_arr = np.zeros([EPOCH,], dtype=np.float)
+        loss_arr = np.zeros([EPOCH,], dtype=float)
         for epoch in range(EPOCH):
             output = cnn(b_x)
             loss = loss_func(output, b_y)

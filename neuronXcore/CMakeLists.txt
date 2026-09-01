@@ -19,7 +19,7 @@ project(msduo VERSION 0.1.0)
 
 cmake_minimum_required(VERSION 2.8)
 if (NOT WIN32)
-set (CMAKE_CXX_FLAGS "--std=c++11")
+set (CMAKE_CXX_FLAGS "--std=c++14")
 set (CUDA_PROPAGATE_HOST_FLAGS ON)
 endif()
 
@@ -42,7 +42,7 @@ set(BIN2C ${CUDA_TOOLKIT_ROOT_DIR}/bin/bin2c)
 
 # -------------------------------------------------------
 if (NOT WIN32) 
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++14")
 endif()
 if(WIN32)
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /ignore:4099 /ignore:4819")

@@ -123,7 +123,7 @@ def squeeze_trace(trace, squeeze_ratio=10):
 def load_location(path):
     """get target worm's crawling trace"""
     target_location = np.array(func.load_json(path)["Frames"])
-    _loc = np.array([0,0,0], dtype=np.float)
+    _loc = np.array([0,0,0], dtype=float)
     # col 4,5,6 - velocity of basic head point
     # col 7,8,9 - displacement of real head point to basic head point
     delta_time = 1/30

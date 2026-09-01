@@ -20,6 +20,7 @@
 #  define _USE_MATH_DEFINES
 #endif
 #include <math.h> // using cmath causes issues under Windows
+#include <cstdint>
 
 #include <stdio.h>
 #include <iostream>
@@ -151,7 +152,7 @@ namespace owl {
     // inline __both__ float cos(float f) { return ::cosf(f); }
     // inline __both__ double cos(double f) { return ::cos(f); }
 
-    using ::saturate;
+    inline __both__ float saturate(const float &f) { return min(1.f,max(0.f,f)); }
 #else
     using std::min;
     using std::max;

@@ -34,7 +34,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(OWL_CXX_FLAGS "")
 if (NOT WIN32)
-set (CMAKE_CXX_FLAGS "--std=c++11")
+set (CMAKE_CXX_FLAGS "--std=c++11 -include cassert")
 set (CUDA_PROPAGATE_HOST_FLAGS ON)
 endif()
 

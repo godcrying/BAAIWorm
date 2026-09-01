@@ -1,6 +1,6 @@
 import os
 import sys
-sys.path.append('/home/lifesim/MetaWorm/build/')
+sys.path.append('/data/lee/Git-clone/BAAIWorm/build/')
 import interact
 import numpy as np
 import os

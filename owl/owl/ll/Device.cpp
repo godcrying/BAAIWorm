@@ -481,6 +481,7 @@ namespace owl {
       static const char *optix_internal_symbols[] = {
 #if 1
         " _optix_",
+        "_optix_",
 #else
         " _optix_get_sbt",
         " _optix_trace",
@@ -535,15 +536,15 @@ namespace owl {
         // first, build the *optix*-flavor of the module from that PTX string
         // ------------------------------------------------------------------
 
-        OPTIX_CHECK_LOG(optixModuleCreateFromPTX(context->optixContext,
-                                                 &context->moduleCompileOptions,
-                                                 &context->pipelineCompileOptions,
-                                                 module.ptxCode,
-                                                 strlen(module.ptxCode),
-                                                 log,      // Log string
-                                                 &sizeof_log,// Log string sizse
-                                                 &module.module
-                                                 ));
+        OPTIX_CHECK_LOG(optixModuleCreate(context->optixContext,
+                                          &context->moduleCompileOptions,
+                                          &context->pipelineCompileOptions,
+                                          module.ptxCode,
+                                          strlen(module.ptxCode),
+                                          log,      // Log string
+                                          &sizeof_log,// Log string sizse
+                                          &module.module
+                                          ));
         assert(module.module != nullptr);
 
         // ------------------------------------------------------------------

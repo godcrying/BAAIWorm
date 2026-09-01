@@ -29,6 +29,11 @@ namespace owl {
     {
       static bool alreadyInitialized = false;
       if (alreadyInitialized) return;
+#if GLFW_VERSION_MAJOR*100+GLFW_VERSION_MINOR >= 304
+      // force the X11 (GLX) platform so CUDA-OpenGL interop works;
+      // the Wayland/EGL default breaks cudaGraphicsGLRegisterImage
+      glfwInitHint(GLFW_PLATFORM, GLFW_PLATFORM_X11);
+#endif
       if (!glfwInit())
         exit(EXIT_FAILURE);
       std::cout << "#owl.viewer: glfw initialized" << std::endl;

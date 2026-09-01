@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 2.8.6)
 project(metaworm)
 
 add_compile_options(-fPIC)
-add_compile_options(-std=gnu++11)
+add_compile_options(-std=gnu++14)
 add_compile_options(-Wdeprecated-declarations)
+if(NOT WIN32)
+  add_compile_options(-include cassert)
+endif()
 
 add_definitions(-DSOFTCON_DIR="${PROJECT_SOURCE_DIR}")
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake_module")

@@ -24,9 +24,9 @@
 //std
 #include <set>
 
-namespace std {
-	inline bool operator<(const tinyobj::index_t &a,
-		const tinyobj::index_t &b)
+namespace tinyobj {
+	inline bool operator<(const index_t &a,
+		const index_t &b)
 	{
 		if (a.vertex_index < b.vertex_index) return true;
 		if (a.vertex_index > b.vertex_index) return false;

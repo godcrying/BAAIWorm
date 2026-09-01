@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.6)
 project(sim)
 
-add_compile_options(-std=gnu++11)
+add_compile_options(-std=gnu++14)
 add_compile_options(-Wdeprecated-declarations)
 SET(CMAKE_BUILD_TYPE Release CACHE STRING
 	"Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
@@ -12,6 +12,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR})
 
 #find_package(TinyXML REQUIRED)
 find_package(Eigen3 REQUIRED)
+get_target_property(EIGEN3_INCLUDE_DIR Eigen3::Eigen INTERFACE_INCLUDE_DIRECTORIES)
 find_package(PythonLibs REQUIRED)
 find_package(Boost #[[1.66.0]] COMPONENTS filesystem python3 numpy3)
 
